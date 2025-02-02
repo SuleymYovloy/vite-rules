@@ -15,7 +15,9 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  background: linear-gradient(90deg, #1599d6, #0d8c9c, #149689);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   text-decoration: inherit;
 }
 a:hover {

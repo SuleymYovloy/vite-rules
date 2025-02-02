@@ -1,14 +1,235 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;700&display=swap");
+
+@keyframes greenChameleon {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+.main {
+    height: 100vh; /* Полная высота экрана */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* Градиентный фон с анимацией */
+    background: linear-gradient(135deg, #4574bb, #6bcf71, #2cb3bd, #72cc77);
+    background-size: 300% 300%;
+    animation: greenChameleon 4s infinite alternate;
+    padding: 20px; /* Отступы для малых экранов */
+}
+
+.main span {
+    /* Градиент для текста (при использовании background-clip) */
+    background: linear-gradient(90deg, #29b6f6, #26c6da, #26a69a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 .card {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 30vw;
-    height: 200px;
-    background: #f0f0f0;
+    /* Используем vw для больших экранов, но задаём max/min ширину */
+    width: 25vw;
+    height: 10vw;
+    background: #d4d3d3;
     border-radius: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
+    padding: 20px;
+}
 
-    
+.card h2 {
+    color: #504f4f;
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.swiper_slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Пагинация Swiper */
+.swiper-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 8px;
+
+    .swiper-pagination-bullet {
+        width: 10px;
+        height: 10px;
+        background-color: #ccc;
+        opacity: 0.6;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .swiper-pagination-bullet-active {
+        width: 12px;
+        height: 12px;
+        background-color: #6a5be2;
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+/* Стрелки Swiper */
+.swiper-button-prev,
+.swiper-button-next {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999 !important;
+    display: flex !important; /* Убедимся, что стрелки не скрыты */
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Для больших экранов стрелки можно позиционировать относительно краёв */
+.swiper-button-prev {
+    left: 32%;
+}
+
+.swiper-button-next {
+    right: 32%;
+}
+
+/* Убираем стандартные стрелки */
+.swiper-button-prev::after,
+.swiper-button-next::after {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Стили для ссылки "Перейти к тесту" */
+.quiz-link {
+    display: inline-block;
+    margin-top: 15px;
+    text-decoration: none;
+    color: #4574bb;
+    font-weight: 500;
+    border: 1px solid #4574bb;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.quiz-link:hover {
+    background-color: #4574bb;
+    color: #fff;
+}
+
+/* Медиазапросы для адаптивности */
+
+@media (max-width: 2400px) {
+    .card {
+        width: 50%;
+        height: 15vw;
+    }
+
+    .swiper-button-prev {
+        left: 20%;
+    }
+
+    .swiper-button-next {
+        right: 20%;
+    }
+}
+
+@media (max-width: 1500px) {
+    .card {
+        width: 60%;
+        height: 17vw;
+    }
+
+    .swiper-button-prev {
+        left: 10%;
+    }
+
+    .swiper-button-next {
+        right: 10%;
+    }
+}
+
+@media (max-width: 1200px) {
+    .card {
+        width: 70%;
+        height: 19vw;
+    }
+
+    .swiper-button-prev {
+        left: 5%;
+    }
+
+    .swiper-button-next {
+        right: 5%;
+    }
+}
+
+@media (max-width: 960px) {
+    .card {
+        width: 70%;
+        height: 24vw;
+    }
+
+    .swiper-button-prev {
+        left: 5%;
+    }
+
+    .swiper-button-next {
+        right: 5%;
+    }
+
+    .card h2 {
+        font-size: 20px;
+    }
+
+    .card p {
+        font-size: 16px;
+    }
+
+    span {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 60%;
+    }
+
+    .swiper-button-prev {
+        left: 0;
+    }
+    .swiper-button-next {
+        right: 0;
+    }
+}
+
+@media (max-width: 520px) {
+    .card {
+        width: 50%;
+    }
+
+    .card h2 {
+        font-size: 16px;
+    }
 }

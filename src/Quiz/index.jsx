@@ -42,7 +42,7 @@ function Game({ step, question, total, onNext }) {
     const [selectedOption, setSelectedOption] = useState(null);
     const [freeResponse, setFreeResponse] = useState("");
     const [showExplanation, setShowExplanation] = useState(false);
-    const percentage = Math.round(((step + 1) / total) * 100);
+    const percentage = Math.round(((step + 1) / total) * 91);
 
     useEffect(() => {
         setSelectedOption(null);

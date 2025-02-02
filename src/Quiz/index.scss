@@ -89,7 +89,7 @@ p {
 }
 
 .quiz-wrapper {
-    background-color: #5e98cf;
+    background: linear-gradient(135deg, #4574bb, #6bcfaa, #458ea0, #5bb360);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -116,7 +116,6 @@ p {
     position: relative;
     text-align: left;
     border-radius: 10px;
-    width: 1100px;
 
     .result {
         text-align: center;
@@ -296,7 +295,7 @@ p {
 
 .result-text {
     font-size: 1.5rem;
-    max-width: 100px;
+    max-width: 560px;
 }
 
 .result_content {
