@@ -21,14 +21,18 @@ function Result({ correct, total }) {
         resultText =
             "Есть к чему стремиться! 🌱 Пока что вы не до конца разобрались с правилами, но у вас есть время подготовиться. 💡";
         resultImage =
-            "https://cdn2.iconfinder.com/data/icons/greenline/512/crossed-256.png"; // если fail — это импортированное изображение
+            "https://cdn2.iconfinder.com/data/icons/greenline/512/crossed-256.png";
     }
 
     return (
         <div className="result">
             <div className="result_content">
-                <img src={resultImage} alt="Result" />
-                <h2>{resultText}</h2>
+                <img
+                    src={resultImage}
+                    alt="Result"
+                    style={{ maxWidth: "100%", height: "auto" }}
+                />
+                <h2 className="result-title">{resultText}</h2>
                 <button onClick={() => window.location.reload()}>
                     Попробовать снова
                 </button>
