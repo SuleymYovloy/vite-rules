@@ -84,7 +84,7 @@ p {
 }
 
 .logo {
-    width: 200px;
+    width: 40px;
     margin-bottom: 50px;
 }
 
@@ -109,6 +109,7 @@ p {
 }
 
 .quiz {
+    width: 30vw;
     box-sizing: border-box;
     padding: 40px;
     background-color: #fff;
@@ -307,145 +308,66 @@ p {
     width: 20vw;
 }
 
-@media (max-width: 768px) {
-    .quiz-wrapper {
-        padding: 10px;
-    }
-
+@media (max-width: 360px) {
     .quiz {
-        width: 90vw !important;
-        padding: 20px !important;
-
-        .question {
-            font-size: 28px !important;
-        }
-
-        ul li {
-            font-size: 16px !important;
-            padding: 10px !important;
-        }
-
-        .result_content {
-            width: 80vw !important;
-        }
-    }
-
-    .logo {
-        width: 150px !important;
-        margin-bottom: 20px !important;
-    }
-
-    .result-title {
-        font-size: 2rem !important;
-    }
-
-    .result-text {
-        font-size: 1.2rem !important;
-    }
-}
-
-@media (max-width: 480px) {
-    .quiz {
-        .question {
-            font-size: 24px !important;
-        }
-
-        ul li {
-            font-size: 14px !important;
-        }
-
-        .result_content {
-            width: 90vw !important;
-        }
-    }
-
-    .logo {
-        width: 120px !important;
-    }
-
-    .result-title {
-        font-size: 1.8rem !important;
-    }
-
-    .result-text {
-        font-size: 1rem !important;
-    }
-}
-
-@media (max-width: 768px) {
-    .quiz-wrapper {
-        padding: 10px;
-    }
-
-    .quiz {
-        width: 90vw !important;
-        padding: 20px !important;
-
-        .question {
-            font-size: 28px !important;
-        }
-
-        ul li {
-            font-size: 16px !important;
-            padding: 10px !important;
-        }
-
-        .result_content {
-            width: 80vw !important;
-        }
+        width: 100vw;
 
         .explanation {
-            font-size: 14px !important; // Уменьшаем размер текста пояснения
-            padding: 8px !important; // Уменьшаем отступы
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            padding: 0;
+            transform: translateY(10px);
+            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out,
+                max-height 0.4s ease-in-out;
+            margin: 20px 0 0; /* чтобы не было лишнего отступа, когда блок скрыт */
+            font-size: 12px;
+        }
+
+        .explanation.visible {
+            max-height: 200px; /* Достаточно для размещения текста; при необходимости увеличьте */
+            opacity: 1;
+            transform: translateY(0);
         }
     }
 
+    p {
+        font-size: 12px;
+        text-align: center;
+        margin: 5px;
+    }
+
+    .question {
+        font-size: 14px;
+    }
+
     .logo {
-        width: 150px !important; // Уменьшаем логотип для планшетов
-        margin-bottom: 20px !important;
+        width: 60px;
+        margin-bottom: 20px;
     }
 
-    .result-title {
-        font-size: 2rem !important;
+    .quiz ul li {
+        padding: 8px;
+        margin-bottom: 10px;
+        font-size: 12px;
     }
 
-    .result-text {
-        font-size: 1.2rem !important;
+    button {
+        padding: 8px 16px;
+        font-size: 14px;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        margin-top: 10px;
+        cursor: pointer;
+        background-color: #2c2f31;
+        color: rgb(199, 194, 194);
+        transition: background-color 0.3s ease-in-out;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 760px) {
     .quiz {
-        .question {
-            font-size: 24px !important;
-        }
-
-        ul li {
-            font-size: 14px !important;
-            margin-bottom: 15px;
-        }
-
-        .result_content {
-            width: 90vw !important;
-        }
-
-        .explanation {
-            font-size: 12px !important; // Ещё меньше размер текста для телефонов
-            padding: 5px !important; // Ещё меньше отступы
-            margin: 10px 0 10px;
-        }
-    }
-
-    .logo {
-        width: 100px !important; // Уменьшаем логотип для телефонов
-        margin-bottom: 15px !important;
-    }
-
-    .result-title {
-        font-size: 1.8rem !important;
-    }
-
-    .result-text {
-        font-size: 1rem !important;
+        width: 70vw;
     }
 }

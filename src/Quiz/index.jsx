@@ -21,18 +21,14 @@ function Result({ correct, total }) {
         resultText =
             "Есть к чему стремиться! 🌱 Пока что вы не до конца разобрались с правилами, но у вас есть время подготовиться. 💡";
         resultImage =
-            "https://cdn2.iconfinder.com/data/icons/greenline/512/crossed-256.png";
+            "https://cdn2.iconfinder.com/data/icons/greenline/512/crossed-256.png"; // если fail — это импортированное изображение
     }
 
     return (
         <div className="result">
             <div className="result_content">
-                <img
-                    src={resultImage}
-                    alt="Result"
-                    style={{ maxWidth: "100%", height: "auto" }}
-                />
-                <h2 className="result-title">{resultText}</h2>
+                <img src={resultImage} alt="Result" />
+                <h2>{resultText}</h2>
                 <button onClick={() => window.location.reload()}>
                     Попробовать снова
                 </button>
@@ -44,11 +40,13 @@ function Result({ correct, total }) {
 // Компонент для отображения одного вопроса
 function Game({ step, question, total, onNext }) {
     const [selectedOption, setSelectedOption] = useState(null);
+    const [freeResponse, setFreeResponse] = useState("");
     const [showExplanation, setShowExplanation] = useState(false);
-    const percentage = Math.round(((step + 1) / total) * 100);
+    const percentage = Math.round(((step + 1) / total) * 91);
 
     useEffect(() => {
         setSelectedOption(null);
+        setFreeResponse("");
         setShowExplanation(false);
     }, [question]);
 
@@ -66,13 +64,13 @@ function Game({ step, question, total, onNext }) {
             <h2 className="question">{question.question}</h2>
 
             {/* Варианты ответа */}
-            {question.options && (
+            {question.options ? (
                 <ul>
                     {question.options.map((text, index) => {
                         let className =
                             selectedOption === index ? "selected" : "";
 
-                        // Если ответ уже выбран и вопрос не нейтральный, подсвечиваем правильный/неправильный вариант
+                        // Проверяем правильность ответа, если вопрос не нейтральный
                         if (selectedOption !== null && !question.isNeutral) {
                             if (
                                 text.trim().toLowerCase() ===
@@ -91,7 +89,10 @@ function Game({ step, question, total, onNext }) {
                                 onClick={() => {
                                     if (selectedOption === null) {
                                         setSelectedOption(index);
-                                        setShowExplanation(true);
+                                        setTimeout(
+                                            () => setShowExplanation(true),
+                                            100
+                                        );
                                     }
                                 }}
                             >
@@ -100,34 +101,44 @@ function Game({ step, question, total, onNext }) {
                         );
                     })}
                 </ul>
-            )}
+            ) : question.reply ? (
+                <div>
+                    <p>{question.reply}</p>
+                    <input
+                        className="input"
+                        type="text"
+                        value={freeResponse}
+                        onChange={(e) => setFreeResponse(e.target.value)}
+                        placeholder="Введите ваш ответ"
+                    />
+                </div>
+            ) : null}
 
-            {/* Пояснение — отображается только после выбора ответа */}
-            <div
-                className={`explanation ${
-                    showExplanation ? "visible" : "hidden"
-                }`}
-            >
+            {/* Пояснение с анимацией */}
+            <div className={`explanation ${showExplanation ? "visible" : ""}`}>
                 <p>
                     {question.explanations ||
-                        "Нет пояснения для этого вопроса."}
+                        "Нет пояснения для данного вопроса."}
                 </p>
             </div>
 
-            {/* Кнопка "Далее" отображается, когда ответ выбран */}
-            {selectedOption !== null && (
+            {/* Кнопка "Далее" */}
+            {(selectedOption !== null || question.reply) && (
                 <button
-                    className="button"
                     onClick={() => {
-                        if (
-                            question.options[selectedOption]
-                                .trim()
-                                .toLowerCase() ===
-                            question.answer.trim().toLowerCase()
-                        ) {
-                            onNext(true);
+                        if (question.options && question.answer !== undefined) {
+                            if (
+                                question.options[selectedOption]
+                                    .trim()
+                                    .toLowerCase() ===
+                                question.answer.trim().toLowerCase()
+                            ) {
+                                onNext(true);
+                            } else {
+                                onNext(false);
+                            }
                         } else {
-                            onNext(false);
+                            onNext(null);
                         }
                     }}
                 >
