@@ -371,3 +371,81 @@ p {
         font-size: 1rem !important;
     }
 }
+
+@media (max-width: 768px) {
+    .quiz-wrapper {
+        padding: 10px;
+    }
+
+    .quiz {
+        width: 90vw !important;
+        padding: 20px !important;
+
+        .question {
+            font-size: 28px !important;
+        }
+
+        ul li {
+            font-size: 16px !important;
+            padding: 10px !important;
+        }
+
+        .result_content {
+            width: 80vw !important;
+        }
+
+        .explanation {
+            font-size: 14px !important; // Уменьшаем размер текста пояснения
+            padding: 8px !important; // Уменьшаем отступы
+        }
+    }
+
+    .logo {
+        width: 150px !important; // Уменьшаем логотип для планшетов
+        margin-bottom: 20px !important;
+    }
+
+    .result-title {
+        font-size: 2rem !important;
+    }
+
+    .result-text {
+        font-size: 1.2rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .quiz {
+        .question {
+            font-size: 24px !important;
+        }
+
+        ul li {
+            font-size: 14px !important;
+            margin-bottom: 15px;
+        }
+
+        .result_content {
+            width: 90vw !important;
+        }
+
+        .explanation {
+            font-size: 12px !important; // Ещё меньше размер текста для телефонов
+            padding: 5px !important; // Ещё меньше отступы
+            margin: 10px 0 10px;
+        }
+    }
+
+    .logo {
+        width: 100px !important; // Уменьшаем логотип для телефонов
+        margin-bottom: 15px !important;
+    }
+
+    .result-title {
+        font-size: 1.8rem !important;
+    }
+
+    .result-text {
+        font-size: 1rem !important;
+    }
+}

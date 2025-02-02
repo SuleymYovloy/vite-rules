@@ -44,13 +44,11 @@ function Result({ correct, total }) {
 // Компонент для отображения одного вопроса
 function Game({ step, question, total, onNext }) {
     const [selectedOption, setSelectedOption] = useState(null);
-    const [freeResponse, setFreeResponse] = useState("");
     const [showExplanation, setShowExplanation] = useState(false);
-    const percentage = Math.round(((step + 1) / total) * 91);
+    const percentage = Math.round(((step + 1) / total) * 100);
 
     useEffect(() => {
         setSelectedOption(null);
-        setFreeResponse("");
         setShowExplanation(false);
     }, [question]);
 
@@ -68,13 +66,13 @@ function Game({ step, question, total, onNext }) {
             <h2 className="question">{question.question}</h2>
 
             {/* Варианты ответа */}
-            {question.options ? (
+            {question.options && (
                 <ul>
                     {question.options.map((text, index) => {
                         let className =
                             selectedOption === index ? "selected" : "";
 
-                        // Проверяем правильность ответа, если вопрос не нейтральный
+                        // Если ответ уже выбран и вопрос не нейтральный, подсвечиваем правильный/неправильный вариант
                         if (selectedOption !== null && !question.isNeutral) {
                             if (
                                 text.trim().toLowerCase() ===
@@ -93,10 +91,7 @@ function Game({ step, question, total, onNext }) {
                                 onClick={() => {
                                     if (selectedOption === null) {
                                         setSelectedOption(index);
-                                        setTimeout(
-                                            () => setShowExplanation(true),
-                                            100
-                                        );
+                                        setShowExplanation(true);
                                     }
                                 }}
                             >
@@ -105,44 +100,34 @@ function Game({ step, question, total, onNext }) {
                         );
                     })}
                 </ul>
-            ) : question.reply ? (
-                <div>
-                    <p>{question.reply}</p>
-                    <input
-                        className="input"
-                        type="text"
-                        value={freeResponse}
-                        onChange={(e) => setFreeResponse(e.target.value)}
-                        placeholder="Введите ваш ответ"
-                    />
-                </div>
-            ) : null}
+            )}
 
-            {/* Пояснение с анимацией */}
-            <div className={`explanation ${showExplanation ? "visible" : ""}`}>
+            {/* Пояснение — отображается только после выбора ответа */}
+            <div
+                className={`explanation ${
+                    showExplanation ? "visible" : "hidden"
+                }`}
+            >
                 <p>
                     {question.explanations ||
-                        "Нет пояснения для данного вопроса."}
+                        "Нет пояснения для этого вопроса."}
                 </p>
             </div>
 
-            {/* Кнопка "Далее" */}
-            {(selectedOption !== null || question.reply) && (
+            {/* Кнопка "Далее" отображается, когда ответ выбран */}
+            {selectedOption !== null && (
                 <button
+                    className="button"
                     onClick={() => {
-                        if (question.options && question.answer !== undefined) {
-                            if (
-                                question.options[selectedOption]
-                                    .trim()
-                                    .toLowerCase() ===
-                                question.answer.trim().toLowerCase()
-                            ) {
-                                onNext(true);
-                            } else {
-                                onNext(false);
-                            }
+                        if (
+                            question.options[selectedOption]
+                                .trim()
+                                .toLowerCase() ===
+                            question.answer.trim().toLowerCase()
+                        ) {
+                            onNext(true);
                         } else {
-                            onNext(null);
+                            onNext(false);
                         }
                     }}
                 >
