@@ -9,21 +9,26 @@
     }
 }
 
+html,
+body {
+    overflow: hidden; /* Убираем скролл */
+    margin: 0;
+    padding: 0;
+}
+
 .main {
-    height: 100vh; /* Полная высота экрана */
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    /* Градиентный фон с анимацией */
     background: linear-gradient(135deg, #4574bb, #6bcf71, #2cb3bd, #72cc77);
     background-size: 300% 300%;
     animation: greenChameleon 4s infinite alternate;
-    padding: 20px; /* Отступы для малых экранов */
+    padding: 20px;
 }
 
 .main span {
-    /* Градиент для текста (при использовании background-clip) */
     background: linear-gradient(90deg, #29b6f6, #26c6da, #26a69a);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -34,14 +39,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* Используем vw для больших экранов, но задаём max/min ширину */
-    width: 25vw;
-    height: 10vw;
+    width: 30vw;
+    height: auto;
+    min-height: 15vw;
     background: #d4d3d3;
     border-radius: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
-    padding: 20px;
+    padding: 30px;
 }
 
 .card h2 {
@@ -63,39 +68,41 @@
     align-items: center;
     margin-top: 20px;
     gap: 8px;
-
-    .swiper-pagination-bullet {
-        width: 10px;
-        height: 10px;
-        background-color: #ccc;
-        opacity: 0.6;
-        transition: all 0.3s ease-in-out;
-    }
-
-    .swiper-pagination-bullet-active {
-        width: 12px;
-        height: 12px;
-        background-color: #6a5be2;
-        opacity: 1;
-        transform: scale(1.2);
-    }
 }
 
-/* Стрелки Swiper */
+.swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    background-color: #ccc;
+    opacity: 0.6;
+    transition: all 0.3s ease-in-out;
+}
+
+.swiper-pagination-bullet-active {
+    width: 14px;
+    height: 14px;
+    background-color: #6a5be2;
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+/* Улучшение стрелок Swiper */
 .swiper-button-prev,
 .swiper-button-next {
     color: #fff;
     background-color: rgba(0, 0, 0, 0.3);
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 9999 !important;
-    display: flex !important; /* Убедимся, что стрелки не скрыты */
-    visibility: visible !important;
-    opacity: 1 !important;
+    z-index: 10000;
+    opacity: 0.8;
+    transition: background 0.3s ease;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .swiper-button-prev:hover,
@@ -103,23 +110,21 @@
     background-color: rgba(0, 0, 0, 0.6);
 }
 
-/* Для больших экранов стрелки можно позиционировать относительно краёв */
 .swiper-button-prev {
-    left: 32%;
+    left: 10px;
 }
 
 .swiper-button-next {
-    right: 32%;
+    right: 10px;
 }
 
-/* Убираем стандартные стрелки */
 .swiper-button-prev::after,
 .swiper-button-next::after {
     font-size: 20px;
     font-weight: bold;
 }
 
-/* Стили для ссылки "Перейти к тесту" */
+/* Кнопка "Перейти к тесту" */
 .quiz-link {
     display: inline-block;
     margin-top: 15px;
@@ -137,99 +142,53 @@
     color: #fff;
 }
 
-/* Медиазапросы для адаптивности */
-
-@media (max-width: 2400px) {
-    .card {
-        width: 50%;
-        height: 15vw;
-    }
-
-    .swiper-button-prev {
-        left: 20%;
-    }
-
-    .swiper-button-next {
-        right: 20%;
-    }
-}
-
-@media (max-width: 1500px) {
-    .card {
-        width: 60%;
-        height: 17vw;
-    }
-
-    .swiper-button-prev {
-        left: 10%;
-    }
-
-    .swiper-button-next {
-        right: 10%;
-    }
-}
-
+/*  Медиазапросы для адаптивности */
 @media (max-width: 1200px) {
     .card {
-        width: 70%;
-        height: 19vw;
+        width: 50%;
+        min-height: 20vw;
     }
 
-    .swiper-button-prev {
-        left: 5%;
-    }
-
+    .swiper-button-prev,
     .swiper-button-next {
-        right: 5%;
-    }
-}
-
-@media (max-width: 960px) {
-    .card {
-        width: 70%;
-        height: 24vw;
-    }
-
-    .swiper-button-prev {
-        left: 5%;
-    }
-
-    .swiper-button-next {
-        right: 5%;
-    }
-
-    .card h2 {
-        font-size: 20px;
-    }
-
-    .card p {
-        font-size: 16px;
-    }
-
-    span {
-        font-size: 14px;
+        width: 40px;
+        height: 40px;
     }
 }
 
 @media (max-width: 768px) {
     .card {
-        width: 60%;
+        width: 80%;
+        min-height: 25vw;
+        padding: 20px;
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+        width: 30px;
+        height: 30px;
     }
 
     .swiper-button-prev {
-        left: 0;
+        left: 5%;
     }
+
     .swiper-button-next {
-        right: 0;
+        right: 5%;
     }
 }
 
 @media (max-width: 520px) {
     .card {
-        width: 50%;
+        width: 90%;
+        min-height: 30vw;
     }
 
-    .card h2 {
-        font-size: 16px;
+    .swiper-button-prev {
+        left: 2%;
+    }
+
+    .swiper-button-next {
+        right: 2%;
     }
 }
