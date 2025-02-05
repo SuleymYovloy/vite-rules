@@ -308,6 +308,138 @@ p {
     width: 20vw;
 }
 
+@media (max-width: 1400px) {
+    .quiz {
+        width: 70vw;
+
+        ul {
+            li {
+                font-size: 16px;
+                padding: 15px;
+                margin-bottom: 30px;
+            }
+        }
+    }
+
+    .logo {
+        width: 140px;
+        margin-bottom: 30px;
+    }
+
+    .question {
+        font-size: 30px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+    
+    button {
+        font-size: 16px;
+    }
+
+    .explanation.visible {
+        margin: 40px 0 20px 0;
+    }
+}
+
+@media (max-width: 1200px) {
+    .quiz {
+        width: 70vw;
+
+        ul {
+            li {
+                font-size: 16px;
+                padding: 15px;
+                margin-bottom: 30px;
+            }
+        }
+    }
+
+    .logo {
+        width: 140px;
+        margin-bottom: 30px;
+    }
+
+    .question {
+        font-size: 30px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+    
+    button {
+        font-size: 16px;
+    }
+
+    .explanation.visible {
+        margin: 40px 0 20px 0;
+    }
+}
+
+@media (max-width: 920px) {
+    .quiz {
+        width: 85vw;
+
+        ul {
+            li {
+                font-size: 16px;
+                padding: 20px;
+                margin-bottom: 30px;
+            }
+        }
+    }
+
+    .logo {
+        width: 140px;
+        margin-bottom: 40px;
+    }
+
+    .question {
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 760px) {
+    .quiz {
+        width: 80vw;
+
+        ul {
+            li {
+                font-size: 13px;
+                padding: 10px;
+                margin-bottom: 20px;
+            }
+        }
+    }
+
+    .logo {
+        width: 120px;
+        margin-bottom: 30px;
+    }
+
+    .question {
+        font-size: 21px;
+    }
+
+    p {
+        font-size: 13px;
+    }
+    
+    button {
+        font-size: 13px;
+    }
+
+    .explanation.visible {
+        margin: 30px 0 20px 0;
+    }
+}
+
+@media (max-width: 540px) {
+    
+}
+
 @media (max-width: 360px) {
     .quiz {
         width: 100vw;
@@ -363,11 +495,5 @@ p {
         background-color: #2c2f31;
         color: rgb(199, 194, 194);
         transition: background-color 0.3s ease-in-out;
-    }
-}
-
-@media (max-width: 760px) {
-    .quiz {
-        width: 70vw;
     }
 }
